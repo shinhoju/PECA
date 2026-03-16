@@ -1,5 +1,5 @@
 
-# ECCV Physically- and Epipolar-constrained Cross Attention
+# Physically-and Epipolar-constrained Cross Attention
 
 
 ## Installation
