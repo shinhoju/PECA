@@ -22,9 +22,6 @@ wandb/
 .eggs/
 results/
 local_*
-*.lmdb/
-raw/
-datasets/
 
 
 ### Python ###
