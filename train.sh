@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG="/home/oem/projects/XYFormer/XY-Restormer/Motion_Deblurring/Options/Deblurring_Restormer_xy.yml"
+CONFIG=./options/XYDeblur.yml
+DEVICES="0"
 
-torchrun --nproc_per_node=2 --master_port=4321 basicsr/train.py -opt $CONFIG --launcher pytorch
+torchrun --nproc_per_node=1 --master_port=4321 basicsr/train.py -opt $CONFIG --launcher pytorch
