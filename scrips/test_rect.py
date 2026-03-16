@@ -15,7 +15,7 @@ import utils
 
 from natsort import natsorted
 from glob import glob
-from basicsr.models.archs.stereo_restormer import RectRestormer
+from PECA.basicsr.models.archs.stereo_restormer_arch import RectRestormer
 from basicsr.models.archs.concat_restormer_arch import ConcatRestormer
 from basicsr.metrics.psnr_ssim import calculate_psnr, calculate_ssim
 from skimage import img_as_ubyte

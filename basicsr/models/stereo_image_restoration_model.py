@@ -49,11 +49,11 @@ class RectMixing_Augment:
             target, input_, guide_ = self.augments[augment](target, input_, guide_)
         return target, input_, guide_
 
-class RectImageCleanModel(BaseModel):
+class StereoImageCleanModel(BaseModel):
     """Base Deblur model for single image deblur."""
 
     def __init__(self, opt):
-        super(RectImageCleanModel, self).__init__(opt)
+        super(StereoImageCleanModel, self).__init__(opt)
 
         # define network
         self.mixing_flag = self.opt['train']['mixing_augs'].get('mixup', False)
