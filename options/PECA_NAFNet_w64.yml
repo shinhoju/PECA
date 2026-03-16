@@ -1,0 +1,115 @@
+# ------------------------------------------------------------------------
+# Copyright (c) 2022 megvii-model. All Rights Reserved.
+# ------------------------------------------------------------------------
+# Modified from BasicSR (https://github.com/xinntao/BasicSR)
+# Copyright 2018-2020 BasicSR Authors
+# ------------------------------------------------------------------------
+# general settings
+name: PECA-NAFNet-w64
+model_type: StereoImageCleanModel
+scale: 1
+num_gpu: 2
+manual_seed: 100
+
+datasets:
+  train:
+    name: trainset
+    type: Dataset_RectifiedImage
+    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/target_crops
+    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/input_crops
+    dataroot_gd: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/guide_crops
+
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+    gt_size: 256
+    use_flip: false
+    use_rot: false
+
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 8
+    batch_size_per_gpu: 4
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+  val:
+    name: valset
+    type: Dataset_RectifiedImage
+    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/target
+    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/input
+    dataroot_gd: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/guide
+    io_backend:
+      type: disk
+
+
+network_g:
+  type: StereoNAFNetLocal
+  width: 64
+  enc_blk_nums: [1, 1, 28]
+  middle_blk_num: 1
+  dec_blk_nums: [1, 1, 1]
+  search_range: 5
+  direction_mode: uni
+  temperature: 0.01
+  enc_mode: sep
+  lin: true
+  residual: true
+
+# path
+path:
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+# training settings
+train:
+  optim_g:
+    type: AdamW
+    lr: !!float 5e-4
+    weight_decay: !!float 1e-3
+    betas: [0.9, 0.9]
+
+  scheduler:
+    type: TrueCosineAnnealingLR
+    T_max: 400000
+    eta_min: !!float 1e-6
+
+  total_iter: 400000
+  warmup_iter: -1 # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1
+    reduction: mean
+
+# validation settings
+val:
+  val_freq: !!float 1e4
+  save_img: false
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+    ssim:
+      type: calculate_ssim
+      crop_border: 0
+      test_y_channel: false
+
+# logging settings
+logger:
+  print_freq: 1000
+  save_checkpoint_freq: !!float 1e4
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
