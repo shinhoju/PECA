@@ -10,16 +10,14 @@ datasets:
   train:
     name: TrainSet
     type: Dataset_PairedImage
-    dataroot_gt: ./datasets/train/benchmark_720/target_crops
-    dataroot_lq: ./datasets/train/benchmark_720/input_crops
+    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/target_crops
+    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/input_crops
     geometric_augs: false
     filename_tmpl: '{}'
     io_backend:
       type: disk
 
     gt_size: 128
-    use_flip: false
-    use_rot: false
 
     # data loader
     use_shuffle: true
@@ -31,8 +29,8 @@ datasets:
   val:
     name: pilot-test
     type: Dataset_PairedImage
-    dataroot_gt: ./datasets/benchmark_720/test/target
-    dataroot_lq: ./datasets/benchmark_720/test/input
+    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/target
+    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/input
     io_backend:
       type: disk
 

@@ -20,9 +20,7 @@ datasets:
       type: disk
 
     gt_size: 128
-    use_flip: false
-    use_rot: false
-
+    
     # data loader
     use_shuffle: true
     num_worker_per_gpu: 8

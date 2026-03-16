@@ -1,5 +1,5 @@
 # general settings
-name: debug
+name: PECA-Restormer
 model_type: StereoImageCleanModel
 scale: 1
 num_gpu: 2  # set num_gpu: 0 for cpu mode

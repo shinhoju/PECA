@@ -5,8 +5,8 @@
 # Copyright 2018-2020 BasicSR Authors
 # ------------------------------------------------------------------------
 # general settings
-name: NAFNet-w64
-model_type: StereoImageCleanModel
+name: NAFNet-w64-debug
+model_type: ImageCleanModel
 scale: 1
 num_gpu: 2
 manual_seed: 100
@@ -17,25 +17,24 @@ datasets:
     type: Dataset_PairedImage
     dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/target_crops
     dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/input_crops
+    geometric_augs: false
 
     filename_tmpl: '{}'
     io_backend:
       type: disk
 
     gt_size: 256
-    use_flip: false
-    use_rot: false
 
     # data loader
     use_shuffle: true
     num_worker_per_gpu: 8
-    batch_size_per_gpu: 4
+    batch_size_per_gpu: 1
     dataset_enlarge_ratio: 1
     prefetch_mode: ~
 
   val:
     name: valset
-    type: Dataset_RectifiedImage
+    type: Dataset_PairedImage
     dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/target
     dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/input
     io_backend:
@@ -68,8 +67,14 @@ train:
     T_max: 400000
     eta_min: !!float 1e-6
 
+  mixing_augs:
+    mixup: false
+    mixup_beta: 1.2
+    use_identity: true
+
   total_iter: 400000
   warmup_iter: -1 # no warm up
+  use_grad_clip: true
 
   # losses
   pixel_opt:
@@ -98,7 +103,7 @@ logger:
   save_checkpoint_freq: !!float 1e4
   use_tb_logger: true
   wandb:
-    project: Rectified-NAFNet
+    project: ~
     resume_id: ~
 
 # dist training settings

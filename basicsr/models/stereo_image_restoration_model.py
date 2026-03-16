@@ -195,11 +195,15 @@ class StereoImageCleanModel(BaseModel):
             self.net_g_ema.eval()
             with torch.no_grad():
                 pred = self.net_g_ema(imgs['lq'], imgs['gd'])
+                if isinstance(pred, list):
+                    pred = pred[-1]
             self.output = pred
         else:
             self.net_g.eval()
             with torch.no_grad():
                 pred = self.net_g(imgs['lq'], imgs['gd'])
+                if isinstance(pred, list):
+                    pred = pred[-1]
             self.output = pred
             self.net_g.train()
 
@@ -229,7 +233,7 @@ class StereoImageCleanModel(BaseModel):
 
         cnt = 0
 
-        for idx, val_data in enumerate(dataloader):
+        for idx, val_data in tqdm(enumerate(dataloader), total=len(dataloader)):
             img_name = osp.splitext(osp.basename(val_data['lq_path'][0]))[0]
 
             self.feed_data(val_data)
