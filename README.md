@@ -1,6 +1,10 @@
 
 # PECA: Physically-and Epipolar-constrained Cross Attention
 
+[![ECCV 2026](https://img.shields.io/badge/ECCV-2026-blue)](https://eccv.ecva.net/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Dataset License: CC BY 4.0](https://img.shields.io/badge/Dataset%20License-CC--BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 The official pytorch implementation of the paper **[A Benchmark for Heterogeneous Stereo Deblurring with Physically- and Epipolar-constrained Cross Attention (ECCV2026)](https://openreview.net/forum?id=Wa0C2CXiEd&referrer=%5Bthe%20profile%20of%20Hoju%20Shin%5D(%2Fprofile%3Fid%3D~Hoju_Shin1))**
 
 #### 저자
