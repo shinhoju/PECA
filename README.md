@@ -11,8 +11,9 @@ The official pytorch implementation of the paper **[A Benchmark for Heterogeneou
   <img src="./assets/fig_overview.png" width="90%">
 </p>
 
-#### 저자
+#### Hoju Shin*, Jiah Kim*, Seung-Wook Kim, Seowon Ji
 >Modern stereo-capable smartphones enable immersive XR content capture. However, hardware heterogeneity across camera modules often causes severe asymmetric blur artifacts. Existing methods and benchmarks largely assume homogeneous stereo setups and therefore do not explicitly address such asymmetric degradation. To bridge this gap, we present a dedicated framework for heterogeneous stereo deblurring. First, we introduce the heterogeneous stereo deblurring (HSD) dataset, constructed from real smartphone stereo captures via multi-frame integration. Second, we propose physically- and epipolar-constrained cross attention (PECA), a lightweight module that restricts cross-view matching to an epipolar search window bounded by a optics-derived disparity upper bound. By enforcing physically valid disparity constraints, PECA enables efficient and reliable cross-view feature fusion. Moreover, our confidence-weighted attention with residual fusion emphasizes cross-guided deblurring when correspondences are reliable, while naturally falling back to self-deblurring in occluded or unreliable regions. PECA is architecture-agnostic and consistently improves CNN-, Transformer-, and NAFNet-based baselines. Extensive experiments on HSD show that PECA-enhanced models achieve improved restoration performance with favorable efficiency.
+>(*Equally contribution.)
 
 ## Download Dataset
 HSD dataset is available on [Hugging Face](https://huggingface.co/datasets/hj-shin/HSD), [Google Drive](https://drive.google.com/drive/folders/1aBukX8v2LeFJiR8Ej09ZGKMJ7F6sB39i)
@@ -60,7 +61,7 @@ cuda 12.8
 ```
 
 ```
-git clone https://github.com/pknu-v-lab/PECA.git
+git clone https://github.com/shinhoju/PECA.git
 cd PECA
 pip install -r requirements.txt
 python setup.py develop
@@ -77,9 +78,9 @@ python generate_patches.py
 
 2. To train models, run
 ```
-./train.sh./options/PECA_XYDeblur.yml
-./train.sh./options/PECA_Restormer.yml
-./train.sh./options/PECA_NAFNet_w64.yml
+./train.sh ./options/PECA_XYDeblur.yml
+./train.sh ./options/PECA_Restormer.yml
+./train.sh ./options/PECA_NAFNet_w64.yml
 ```
 **Note:** The above training script uses 2 GPUs by default. To use any other number of GPUs, modify [train.sh](train.sh) and [option files](options/).
 
