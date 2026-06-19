@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-CONFIG=./options/PECA_XYDeblur.yml
-# CONFIG=./options/PECA_NAFNet_w64.yml
-# CONFIG=./options/PECA_Restormer.yml
+CONFIG=$1
 
-DEVICES="0,1"
-
-CUDA_VISIBLE_DEVICES=$DEVICES torchrun --nproc_per_node=2 --master_port=4321 basicsr/stere_train.py -opt $CONFIG --launcher pytorch
+torchrun --nproc_per_node=2 --master_port=4321 basicsr/stere_train.py -opt $CONFIG --launcher pytorch

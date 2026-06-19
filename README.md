@@ -81,7 +81,7 @@ python generate_patches.py
 ./train.sh./options/PECA_Restormer.yml
 ./train.sh./options/PECA_NAFNet_w64.yml
 ```
-**Note:** The above training script uses 2 GPUs by default. To use any other number of GPUs, modify [train.sh](./train.sh) and option files.
+**Note:** The above training script uses 2 GPUs by default. To use any other number of GPUs, modify [train.sh](PECA/train.sh) and option files.
 
 
 ## Results and Pre-trained Models
