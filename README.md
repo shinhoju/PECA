@@ -52,6 +52,7 @@ HSD/
 
 
 ## Installation
+This implementation based on [BasicSR](https://github.com/xinntao/BasicSR) which is a open source toolbox for image/video restoration tasks and [NAFNet](https://github.com/megvii-research/NAFNet), [Restormer](https://github.com/swz30/Restormer).
 
 ```python
 python 3.10.19
