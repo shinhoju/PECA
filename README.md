@@ -91,3 +91,16 @@ python generate_patches.py
 | XYDeblur + **Ours** | 32.22 | 0.9620 | [gdrive]() | [link](options/PECA_XYDeblur.yml) |
 | Restormer + **Ours** | 32.47 | 0.9636 | [gdrive]() | [link](options/PECA_Restormer.yml) |
 | NAFNet + **Ours** | 32.92 | 0.9669 | [gdrive]() | [link](options/PECA_NAFNet_w64.yml) |
+
+
+## Citation
+If you find this work useful for your research, please cite our paper:
+
+```
+@article{name,
+  title={A Benchmark for Heterogeneous Stereo Deblurring with Physically- and Epipolar-constrained Cross Attention},
+  author={},
+  journal={},
+  year={2026}
+}
+```
