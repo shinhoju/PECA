@@ -10,14 +10,15 @@ model_type: StereoImageCleanModel
 scale: 1
 num_gpu: 2
 manual_seed: 100
+find_unused_parameters: true
 
 datasets:
   train:
     name: trainset
     type: Dataset_RectifiedImage
-    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/target_crops
-    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/input_crops
-    dataroot_gd: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/guide_crops
+    dataroot_gt: ./datasets/PECA/train/target_crops
+    dataroot_lq: ./datasets/PECA/train/input_crops
+    dataroot_gd: ./datasets/PECA/train/guide_crops
     geometric_augs: false
 
     filename_tmpl: '{}'
@@ -36,9 +37,9 @@ datasets:
   val:
     name: valset
     type: Dataset_RectifiedImage
-    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/target
-    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/input
-    dataroot_gd: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/guide
+    dataroot_gt: ./datasets/PECA/test/target
+    dataroot_lq: ./datasets/PECA/test/input
+    dataroot_gd: ./datasets/PECA/test/guide
     io_backend:
       type: disk
 

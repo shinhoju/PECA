@@ -17,11 +17,9 @@
 
 experiments/
 tb_logger/
-.vscode
 wandb/
 .eggs/
 results/
-local_*
 
 
 ### Python ###

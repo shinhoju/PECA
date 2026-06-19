@@ -5,18 +5,19 @@
 # Copyright 2018-2020 BasicSR Authors
 # ------------------------------------------------------------------------
 # general settings
-name: NAFNet-w64-debug
+name: NAFNet-w64
 model_type: ImageCleanModel
 scale: 1
 num_gpu: 2
 manual_seed: 100
+find_unused_parameters: true
 
 datasets:
   train:
     name: trainset
     type: Dataset_PairedImage
-    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/target_crops
-    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/train/benchmark_720/input_crops
+    dataroot_gt: ./datasets/PECA/train/target_crops
+    dataroot_lq: ./datasets/PECA/train/input_crops
     geometric_augs: false
 
     filename_tmpl: '{}'
@@ -35,8 +36,8 @@ datasets:
   val:
     name: valset
     type: Dataset_PairedImage
-    dataroot_gt: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/target
-    dataroot_lq: /home/oem/projects-hoju/NAFNet/datasets/test/benchmark_720/input
+    dataroot_gt: ./datasets/PECA/test/target
+    dataroot_lq: ./datasets/PECA/test/input
     io_backend:
       type: disk
 
