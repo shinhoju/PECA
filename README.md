@@ -65,3 +65,29 @@ cd PECA
 pip install -r requirements.txt
 python setup.py develop
 ```
+
+
+## Quick Start
+
+1. Generate image patches from full-resolution training images of HSD dataset
+```
+cd scripts
+python generate_patches.py 
+```
+
+2. To train models, run
+```
+./train.sh./options/PECA_XYDeblur.yml
+./train.sh./options/PECA_Restormer.yml
+./train.sh./options/PECA_NAFNet_w64.yml
+```
+**Note:** The above training script uses 2 GPUs by default. To use any other number of GPUs, modify [train.sh](./train.sh) and option files.
+
+
+## Results and Pre-trained Models
+
+| Method | PSNR | SSIM | pretrained models | config |
+|---|---:|---:|---|---|
+| XYDeblur + **Ours** | 32.22 | 0.9620 | [gdrive]() | [link](options/PECA_XYDeblur.yml) |
+| Restormer + **Ours** | 32.47 | 0.9636 | [gdrive]() | [link](options/PECA_Restormer.yml) |
+| NAFNet + **Ours** | 32.92 | 0.9669 | [gdrive]() | [link](options/PECA_NAFNet_w64.yml) |
