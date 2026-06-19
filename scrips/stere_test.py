@@ -2,7 +2,6 @@
 ## Syed Waqas Zamir, Aditya Arora, Salman Khan, Munawar Hayat, Fahad Shahbaz Khan, and Ming-Hsuan Yang
 ## https://arxiv.org/abs/2111.09881
 
-import pandas as pd
 import numpy as np
 import os
 import argparse
@@ -15,8 +14,9 @@ import utils
 
 from natsort import natsorted
 from glob import glob
-from PECA.basicsr.models.archs.stereo_restormer_arch import RectRestormer
-from basicsr.models.archs.concat_restormer_arch import ConcatRestormer
+from basicsr.models.archs.stereo_xy_arch import StereoXYDeblur
+from basicsr.models.archs.stereo_nafnet_arch import StereoNAFNet
+from basicsr.models.archs.stereo_restormer_arch import StereoRestormer
 from basicsr.metrics.psnr_ssim import calculate_psnr, calculate_ssim
 from skimage import img_as_ubyte
 from pdb import set_trace as stx
@@ -26,13 +26,14 @@ parser = argparse.ArgumentParser(description='Single Image Motion Deblurring usi
 parser.add_argument('--input_dir', default='/home/oem/eccv/benchmark_720/test', type=str, help='Directory of validation images')
 parser.add_argument('--result_dir', default='./results/FINAL_PECA_5', type=str, help='Directory for results')
 parser.add_argument('--weights', default='./experiments/FINAL_Restormer_tiny_of5_temp0.01/models/net_g_400000.pth', type=str, help='Path to weights')
-parser.add_argument('--dataset', default='', type=str, help='Test Dataset') # ['GoPro', 'HIDE', 'RealBlur_J', 'RealBlur_R']
 
 args = parser.parse_args()
 
 ####### Load yaml #######
-yaml_file = './options/masked_rect.yml'
-# yaml_file = './options/vanilla_concat.yml'
+yaml_file = './Motion_Deblurring/Options/PECA_XYDeblur.yml'
+# yaml_file = './Motion_Deblurring/Options/PECA_NAFNet_w64.yml'
+# yaml_file = './Motion_Deblurring/Options/PECA_Restormer.yml'
+
 import yaml
 
 try:
@@ -45,21 +46,19 @@ x = yaml.load(open(yaml_file, mode='r'), Loader=Loader)
 s = x['network_g'].pop('type')
 ##########################
 
-# model_restoration = RectifiedNAFNetLocal(**x['network_g'])
-model_restoration = RectRestormer(**x['network_g'])
-# model_restoration = ConcatRestormer(**x['network_g'])
+model_restoration = StereoXYDeblur(**x['network_g'])
+model_restoration = StereoNAFNet(**x['network_g'])
+model_restoration = StereoRestormer(**x['network_g'])
 
 checkpoint = torch.load(args.weights)
 model_restoration.load_state_dict(checkpoint['params'])
 print("===>Testing using weights: ",args.weights)
 model_restoration.cuda()
-model_restoration = nn.DataParallel(model_restoration)
 model_restoration.eval()
 
 
 factor = 8
-dataset = args.dataset
-result_dir  = os.path.join(args.result_dir, dataset)
+result_dir  = args.result_dir
 os.makedirs(result_dir, exist_ok=True)
 
 inp_dir = os.path.join(args.input_dir, 'input')
@@ -119,6 +118,3 @@ with torch.no_grad():
 
 print("PSNR: ", np.array(metrics_psnr).mean())
 print("SSIM: ", np.array(metrics_ssim).mean())
-df = pd.DataFrame.from_dict(metrics, orient='index')
-df = df.reset_index().rename(columns={'index': 'file_name'})
-df.to_csv(os.path.join(result_dir, 'final_metrics.csv'), index=False)

@@ -3,7 +3,6 @@
 ## https://arxiv.org/abs/2111.09881
 
 import numpy as np
-import pandas as pd
 import os
 import cv2
 import math
@@ -30,15 +29,6 @@ def calculate_psnr(img1, img2, border=0):
         return float('inf')
 
     return -10 * np.log10(mse)
-
-def append_scene_dict(scene_name, data_dict, save_path):
-    save_path = Path(save_path)
-    df = pd.DataFrame({
-        "scene_name": scene_name,
-        "data_id": list(data_dict.keys()),
-        "metric": [float(v) for v in data_dict.values()],
-    })
-    df.to_csv(save_path, mode="a", header=not save_path.exists(), index=False)
 
 # --------------------------------------------
 # SSIM

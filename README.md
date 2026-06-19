@@ -22,8 +22,8 @@ cuda 12.8
 ```
 
 ```
-pip install matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm
-pip install einops gdown addict future lmdb numpy pyyaml requests scipy tb-nightly yapf lpips
-pip install "setuptools<60.0.0" ninja cython numpy
+git clone https://github.com/pknu-v-lab/PECA.git
+cd PECA
+pip install -r requirements.txt
 python setup.py develop
 ```
