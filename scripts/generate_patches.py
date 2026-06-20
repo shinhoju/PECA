@@ -62,30 +62,8 @@ patch_size = 512
 overlap = 256
 p_max = 0
 
-src = './datasets/benchmark_720/train'
-tar = './datasets/train/benchmark_720'
-
-lr_tar = os.path.join(tar, 'input_crops')
-hr_tar = os.path.join(tar, 'target_crops')
-gd_tar = os.path.join(tar, 'guide_crops')
-
-os.makedirs(lr_tar, exist_ok=True)
-os.makedirs(hr_tar, exist_ok=True)
-os.makedirs(gd_tar, exist_ok=True)
-
-lr_files = natsorted(glob(os.path.join(src, 'input', '*.png')) + glob(os.path.join(src, 'input', '*.jpg')))
-hr_files = natsorted(glob(os.path.join(src, 'target', '*.png')) + glob(os.path.join(src, 'target', '*.jpg')))
-gd_files = natsorted(glob(os.path.join(src, 'guide', '*.png')) + glob(os.path.join(src, 'guide', '*.jpg')))
-
-files = [(i, j, k) for i, j, k in zip(lr_files, hr_files, gd_files)]
-
-Parallel(n_jobs=num_cores)(delayed(train_files)(file_) for file_ in tqdm(files))
-
-
-
-########### Prepare validation data ####################
-src = 'datasets/test/benchmark_720'
-tar = './datasets/val/benchmark_720'
+src = './datasets/HSD/train'
+tar = './datasets/HSD/train_crops'
 
 lr_tar = os.path.join(tar, 'input_crops')
 hr_tar = os.path.join(tar, 'target_crops')
