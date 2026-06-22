@@ -87,11 +87,14 @@ python generate_patches.py
 
 ## Results and Pre-trained Models
 
-| Method | PSNR | SSIM | pretrained models | config |
-|---|---:|---:|---|---|
-| XYDeblur + **Ours** | 32.22 | 0.9620 | [gdrive](https://drive.google.com/file/d/10aX213Sp6P2UfdDN-MAyuL8YwJ3QDV5E/view?usp=drive_link) | [link](options/PECA_XYDeblur.yml) |
-| Restormer + **Ours** | 32.47 | 0.9636 | [gdrive](https://drive.google.com/file/d/1hzr_iClVBZUatZXRT-YCWJBqM2MZT1Y8/view?usp=drive_link) | [link](options/PECA_Restormer.yml) |
-| NAFNet + **Ours** | 32.92 | 0.9669 | [gdrive](https://drive.google.com/file/d/1CDL0MpdMgDTCjyo1YtxOHihvL8ZCMTws/view?usp=drive_link) | [link](options/PECA_NAFNet_w64.yml) |
+| Backbone | Variant | Input | PSNR | SSIM | Pretrained model | Config |
+|---|---|---|---:|---:|---|---|
+| XYDeblur | baseline | Single | 30.76 | 0.9444 |  |  |
+| XYDeblur | **PECA** | Stereo | 32.22 | 0.9620 | [gdrive](https://drive.google.com/file/d/10aX213Sp6P2UfdDN-MAyuL8YwJ3QDV5E/view?usp=drive_link) | [link](options/PECA_XYDeblur.yml) |
+| Restormer | baseline | Single | 30.94 | 0.9444 |  |  |
+| Restormer | **PECA** | Stereo | 32.47 | 0.9636 | [gdrive](https://drive.google.com/file/d/1hzr_iClVBZUatZXRT-YCWJBqM2MZT1Y8/view?usp=drive_link) | [link](options/PECA_Restormer.yml) |
+| NAFNet | baseline | Single | 32.16 | 0.9579 |  |  |
+| NAFNet | **PECA** | Stereo | 32.92 | 0.9669 | [gdrive](https://drive.google.com/file/d/1CDL0MpdMgDTCjyo1YtxOHihvL8ZCMTws/view?usp=drive_link) | [link](options/PECA_NAFNet_w64.yml) |
 
 
 ## Citation
