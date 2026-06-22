@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Dataset License: CC BY 4.0](https://img.shields.io/badge/Dataset%20License-CC--BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-The official pytorch implementation of the paper **[A Benchmark for Heterogeneous Stereo Deblurring with Physically- and Epipolar-constrained Cross Attention (ECCV2026)](https://openreview.net/forum?id=Wa0C2CXiEd&referrer=%5Bthe%20profile%20of%20Hoju%20Shin%5D(%2Fprofile%3Fid%3D~Hoju_Shin1))**
+The official pytorch implementation of the paper **[A Benchmark for Heterogeneous Stereo Deblurring with Physically- and Epipolar-constrained Cross Attention (ECCV2026)]())**
 
 <p align="center">
   <img src="./assets/fig_overview.png" width="90%">
@@ -87,6 +87,8 @@ python generate_patches.py
 
 ## Results and Pre-trained Models
 
+<img src="./assets/teaser.png" width="80%">
+
 | Backbone | Variant | Input | PSNR | SSIM | Pretrained model | Config |
 |---|---|---|---:|---:|---|---|
 | XYDeblur | baseline | Single | 30.76 | 0.9444 |  |  |
@@ -101,10 +103,10 @@ python generate_patches.py
 If you find this work useful for your research, please cite our paper:
 
 ```
-@article{name,
-  title={A Benchmark for Heterogeneous Stereo Deblurring with Physically- and Epipolar-constrained Cross Attention},
-  author={},
-  journal={},
-  year={2026}
+@inproceedings{,
+    title={A Benchmark for Heterogeneous Stereo Deblurring with Physically- and Epipolar-constrained Cross Attention}, 
+    author={},
+    booktitle={ECCV},
+    year={2026}
 }
 ```
