@@ -19,34 +19,16 @@ HSD dataset is available on [Hugging Face](https://huggingface.co/datasets/hj-sh
 
 #### Dataset structure
 ```text
-HSD/
+Heterogeneous-Stereo-Deblurring/
 ├── train/
-│   ├── input/
-│   │   ├── 20260204_090602000_iOS_00008.png
-│   │   ├── 20260204_090602000_iOS_00031.png
-│   │   └── ...
-│   ├── target/
-│   │   ├── 20260204_090602000_iOS_00008.png
-│   │   ├── 20260204_090602000_iOS_00031.png
-│   │   └── ...
+│   └── input/
+│   └── target/
 │   └── guide/
-│       ├── 20260204_090602000_iOS_00008.png
-│       ├── 20260204_090602000_iOS_00031.png
-│       └── ...
-│
+|
 └── test/
-    ├── input/
-    │   ├── 20260204_090602000_iOS_00008.png
-    │   ├── 20260204_090602000_iOS_00031.png
-    │   └── ...
-    ├── target/
-    │   ├── 20260204_090602000_iOS_00008.png
-    │   ├── 20260204_090602000_iOS_00031.png
-    │   └── ...
+    └── input/
+    └── target/
     └── guide/
-        ├── 20260204_090602000_iOS_00008.png
-        ├── 20260204_090602000_iOS_00031.png
-        └── ...
 ````
 
 
