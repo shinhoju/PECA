@@ -51,13 +51,22 @@ python setup.py develop
 
 ## Quick Start
 
-1. Generate image patches from full-resolution training images of HSD dataset
+1. Download HSD dataset
+```
+pip install -U huggingface_hub
+
+hf download hj-shin/Heterogeneous-Stereo-Deblurring \
+  --repo-type dataset \
+  --local-dir /data/prof2/hoju/Heterogeneous-Stereo-Deblurring
+```
+
+2. Generate image patches from full-resolution training images of HSD dataset
 ```
 cd scripts
 python generate_patches.py 
 ```
 
-2. To train models, run
+3. To train models, run
 ```
 ./train.sh ./options/PECA_XYDeblur.yml
 ./train.sh ./options/PECA_Restormer.yml
