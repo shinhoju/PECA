@@ -57,7 +57,7 @@ pip install -U huggingface_hub
 
 hf download hj-shin/Heterogeneous-Stereo-Deblurring \
   --repo-type dataset \
-  --local-dir /data/prof2/hoju/Heterogeneous-Stereo-Deblurring
+  --local-dir ./datasets/Heterogeneous-Stereo-Deblurring
 ```
 
 2. Generate image patches from full-resolution training images of HSD dataset
